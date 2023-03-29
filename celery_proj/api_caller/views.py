@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .tasks import test
 
-# Create your views here.
+def test(request):
+    test.delay()
+    return HttpResponse("http request done")
