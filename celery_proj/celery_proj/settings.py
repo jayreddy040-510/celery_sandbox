@@ -130,26 +130,3 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Los_Angeles'
-
-# CELERY LOGGING SETTINGS
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-        'celery': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
-}
-
