@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from celery import chain
-from .tasks import test
+from celery import chain, group
 from django.http import HttpResponse
-from .tasks import sleeper_task
+from .tasks import sleeper_task, group_task, test
 
 def test_view(request):
     if request.method == 'POST':
@@ -16,3 +15,11 @@ def test_sleep_view(request):
                 )
         task_chain.apply_async()
         return HttpResponse("ugh let me sleep")
+
+def test_group_view(request):
+    if request.method == 'POST':
+        tasks = [
+            group_task(num).s() for num in range(5)
+                ]
+        task_group = group(tasks)
+        task_group.apply_async()
