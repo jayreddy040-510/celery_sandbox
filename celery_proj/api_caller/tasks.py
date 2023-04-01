@@ -11,3 +11,8 @@ def test(self):
 def sleeper_task(x):
    time.sleep(x)
    print(f"slept for {x}")
+
+@shared_task(bind=True)
+def group_task(x):
+    print(x)
+
