@@ -19,7 +19,8 @@ def test_sleep_view(request):
 def test_group_view(request):
     if request.method == 'POST':
         tasks = [
-            group_task(num).s() for num in range(5)
+            group_task.si(num) for num in range(5)
                 ]
         task_group = group(tasks)
         task_group.apply_async()
+        return HttpResponse("group view hit")
