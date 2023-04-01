@@ -10,5 +10,4 @@ def test(self):
 @shared_task
 def sleeper_task(x):
    time.sleep(x)
-   print(f"slept for blah")
-   return x
+   print(f"slept for {x}")
